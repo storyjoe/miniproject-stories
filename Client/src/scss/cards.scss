@@ -1,0 +1,49 @@
+.card-container {
+  display: flex;
+  margin: 10px;
+
+  &--column {
+    flex-direction: column;
+    flex: 1;
+
+    &:not(:first-child) {
+      margin-left: 0;
+    }
+  }
+}
+
+.card {
+  width: 120px;
+  height: 70px;
+  padding: 5px;
+  box-shadow: inset 0 0 5px 0px rgba(0, 0, 0, .3);
+
+  &--goal {
+    background-color: #aedaea;
+  }
+
+  &--step {
+    background-color: #f5e458;
+  }
+
+  &--story {
+    background-color: #fff;
+  }
+
+  &--empty {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .card-container--row & {
+    &:not(:first-child) {
+      margin-left: 10px;
+    }
+  }
+
+  .card-container--column & {
+    &:not(:first-child) {
+      margin-top: 10px;
+    }
+  }
+}

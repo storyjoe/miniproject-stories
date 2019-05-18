@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="main">
+    <div class="board" style="display: none;" data-bind="visible: true">
+        <div data-bind="foreach: goals" class="goals d-flex">
+            <div class="goal">
+                <div class="card-container card-container--row">
+                    <div data-bind="text: name" class="card card--goal"></div>
+                </div>
+                <div data-bind="foreach: steps" class="card-container card-container--row">
+                    <div data-bind="text:StepName" class="card card--step"></div>
+                </div>
+            </div>
+        </div>
+        <div class="separator"></div>
+        <div class="release">
+            <p class="release-title">MVP</p>
+            <div data-bind="foreach: goals" class="d-flex">
+                <div data-bind="foreach: steps" class="releases-by-goal d-flex">
+                    <!-- ko if: Stories.length !== 0 && $root.stepHasReleaseItem(StepId,1) -->
+                    <div data-bind="foreach: Stories"
+                         class="card-container card-container--column">
+                        <!-- ko if: ReleaseId === 1 && $parent.StepId === StepId -->
+                        <div data-bind="text: StoryName" class="card card--story"></div>
+                        <!-- /ko -->
+                    </div>
+                    <!-- /ko -->
+                    <!-- ko if: Stories.length === 0 || !$root.stepHasReleaseItem(StepId,1) -->
+                    <div class="card-container card-container--column">
+                        <div class="card card--empty"></div>
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+        <div class="release">
+            <p class="release-title">Release 2</p>
+            <div data-bind="foreach: goals" class="d-flex">
+                <div data-bind="foreach: steps" class="releases-by-goal d-flex">
+                    <!-- ko if: Stories.length !== 0 && $root.stepHasReleaseItem(StepId,2) -->
+                    <div data-bind="foreach: Stories"
+                         class="card-container card-container--column">
+                        <!-- ko if: ReleaseId === 2 && $parent.StepId === StepId -->
+                        <div data-bind="text: StoryName" class="card card--story"></div>
+                        <!-- /ko -->
+                    </div>
+                    <!-- /ko -->
+                    <!-- ko if: Stories.length === 0 || !$root.stepHasReleaseItem(StepId,2) -->
+                    <div class="card-container card-container--column">
+                        <div class="card card--empty"></div>
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="polyfill.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
