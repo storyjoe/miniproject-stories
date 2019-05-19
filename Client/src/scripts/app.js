@@ -1,11 +1,14 @@
-import {getData, setupData} from './dataHandler';
+import setupData from './dataHandler';
 import initVM from './viewModel';
 
-const endPoint = 'http://localhost:5000/api/board';
-
-export const runApp = async () => {
-	const boardData = await getData('GET', endPoint);
-	const structuredData = setupData(boardData);
-	initVM(structuredData);
+const runApp = async () => {
+	try {
+		const structuredData = await setupData();
+		initVM(structuredData);
+	} catch (e) {
+		console.error(e);
+		alert('Something went wrong...');
+	}
 };
 
+export default runApp;

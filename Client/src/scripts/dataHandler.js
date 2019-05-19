@@ -1,6 +1,8 @@
 import xhrRequest from './request';
 import _ from "lodash";
 
+const endPoint = 'http://localhost:5000/api/board';
+
 const getData = async (method, url) => {
 	try {
 		return await xhrRequest(method, url);
@@ -9,15 +11,18 @@ const getData = async (method, url) => {
 	}
 };
 
-const setupData = (rawData) => {
-	const parsedData = JSON.parse(rawData);
+const setupData = async () => {
+	const boardData = await getData('GET', endPoint);
+	const parsedData = JSON.parse(boardData);
 	const goals = _.map(parsedData, (goal) => {
 		return {'name': goal.GoalName, 'steps': goal.Steps}
 	});
 
-	const steps = _.map(goals, (goal) => {
-		return goal.steps;
-	}).flat();
+	const steps = _.flatten(
+		_.map(goals, (goal) => {
+			return goal.steps;
+		})
+	);
 
 	return {
 		goals,
@@ -25,7 +30,4 @@ const setupData = (rawData) => {
 	};
 };
 
-export {
-	getData,
-	setupData
-}
+export default setupData;

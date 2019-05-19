@@ -57,7 +57,7 @@ namespace MiniProject.Models
             }, new Step
             {
                 StepId = 4,
-                StepName = "order product detail",
+                StepName = "open product detail",
                 GoalId = 2
             }, new Step
             {

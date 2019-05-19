@@ -15,3 +15,6 @@ npm run dev || yarn run dev
 npm run build || yarn run build
 
 ```
+## Local API
+
+Make sure Your API is listening @ port 5000
